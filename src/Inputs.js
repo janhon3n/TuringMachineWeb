@@ -1,10 +1,41 @@
 import React, { Component } from 'react';
-
-function Button(props){
+import AddIcon from 'react-icons/lib/md/add'
+import RemoveIcon from 'react-icons/lib/md/clear'
+import LeftIcon from 'react-icons/lib/md/arrow-back'
+import RightIcon from 'react-icons/lib/md/arrow-forward'
+function Button(props) {
+  let width = (props.fullWidth ? '100%':'auto')
+  let padding = '2px'
+  let fontSize = 'auto'
+  let margin= '0px'
+  if(props.big){
+    padding='10px'
+    fontSize= '18px'
+    margin= '10px'
+  }
   return (
-    <button style={{
-      whiteSpace:'nowrap'
-    }} {...props}>{props.text}</button>
+    <button {...props} style={{
+      minWidth:'30px',
+      whiteSpace: 'nowrap',
+      fontFamily: 'Roboto Mono',
+      width: width,
+      margin: margin,
+      padding: padding,
+      fontSize: fontSize,
+      overflow:'hidden',
+    }}>{props.text}</button>
+  )
+}
+
+function AddButton(props) {
+  return (
+    <Button {...props} text={<AddIcon />} />
+  )
+}
+
+function RemoveButton(props) {
+  return (
+    <Button {...props} text={<RemoveIcon />} />
   )
 }
 
@@ -27,38 +58,32 @@ class ToggleButton extends Component {
   }
 
   render() {
+    let text = this.props.value
+    if(this.props.direction && this.props.value === 'L') {
+      text = <LeftIcon/>
+    } else if(this.props.direction && this.props.value === 'R'){
+      text = <RightIcon/>
+    }
     return (
-      <Button onClick={this.toggle} text={this.props.value}/>
+      <Button fullWidth onClick={this.toggle} text={text} />
     );
   }
 }
 
-
 class EditableField extends Component {
-  constructor(props) {
-    super(props)
-    this.edit = this.edit.bind(this)
-
-    this.state = {
-      editingInProgress: false
-    }
-  }
-
-  edit() {
-
-  }
-
   render() {
-    if (!this.state.editingInProgress) {
-      return (
-        <div>{this.props.value}</div>
-      )
-    } else {
-      return (
-        <div>{this.props.value}</div>
-      )
-    }
+    return (
+      <input style={{
+        padding:'5px',
+        border:'0',
+        width:'80px',
+        fontFamily: 'Roboto Mono',
+        backgroundColor:'rgba(255,255,255,0.5)',
+        boxSizing:'border-box',
+      }} onChange={(e) => this.props.setValue(e.target.value)} value={this.props.value}/>
+    )
   }
 }
 
-export { ToggleButton, EditableField, Button };
+
+export { ToggleButton, EditableField, Button, AddButton, RemoveButton };

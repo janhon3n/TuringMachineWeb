@@ -12,7 +12,7 @@ class MachineReadingHead extends Component {
         }}>
         <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
           <polygon points="20,0 50,100, 80,0" style={{
-            fill:'#152'
+            fill:'#003999'
           }}/>
         </svg>
       </div>
