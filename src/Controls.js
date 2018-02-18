@@ -54,7 +54,7 @@ class Controls extends Component {
    
    render() {
       return (
-         <div style={{ display: 'flex', flexDirection: 'column', spaceBetween: '5px', alignItems: 'center' }}>
+         <div style={{ display: 'flex', flexDirection: 'column', spaceBetween: '5px', alignItems: 'center', backgroundColor:'rgba(0,0,0,0.1)'}}>
             {(this.state.error !== null && <div style={{ color: '#ff5656', fontSize: '20px' }}>{this.state.error.message}</div>)}
             <div style={{
                display: 'flex',

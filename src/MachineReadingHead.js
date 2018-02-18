@@ -11,8 +11,9 @@ class MachineReadingHead extends Component {
           left: 'calc(50% - 100px)'
         }}>
         <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <polygon points="20,0 50,100, 80,0" style={{
-            fill:'#003999'
+          <polygon points="20,2 50,98, 80,2" style={{
+            fill:'#003999',
+            stroke:'black',
           }}/>
         </svg>
       </div>

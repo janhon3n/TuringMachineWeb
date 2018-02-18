@@ -5,6 +5,7 @@ import LetterList from './Lists/LetterList'
 import Tape from './Tape'
 import MachineReadingHead from './MachineReadingHead'
 import Controls from 'Controls'
+import ExampleLoader from 'ExampleLoader'
 
 class TuringMachine extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class TuringMachine extends Component {
         this.setTapeLettersAndShiftTapePosition = this.setTapeLettersAndShiftTapePosition.bind(this)
         this.setTapePosition = this.setTapePosition.bind(this)
         this.runIteration = this.runIteration.bind(this)
+        this.loadProgram = this.loadProgram.bind(this)
 
         this.state = {
             states: ['STATE 0'], //always length >= 1
@@ -25,7 +27,7 @@ class TuringMachine extends Component {
                 newState: 'STATE 0',
                 newLetter: 'A',
                 moveDirection: 'L'
-              }],
+            }],
             letters: ['A'], //always length >= 1
             tapeLetters: ['A'],
             currentStateIndex: 0,
@@ -74,7 +76,7 @@ class TuringMachine extends Component {
         })
     }
     setTapeLettersAndShiftTapePosition(tapeLetters, shiftTapePosition) {
-        if(!shiftTapePosition) shiftTapePosition = 0
+        if (!shiftTapePosition) shiftTapePosition = 0
         this.setState(prevState => {
             return {
                 tapeLetters: tapeLetters,
@@ -82,6 +84,15 @@ class TuringMachine extends Component {
             }
         })
     }
+
+    setTapePosition(position) {
+        this.setState({ currentTapePosition: position })
+    }
+
+    loadProgram(program){
+        this.setState(program)
+    }
+
     runIteration() {
         let transitionToRun = this.state.transitions.find(transition => {
             return (transition.oldState === this.state.states[this.state.currentStateIndex] &&
@@ -105,13 +116,11 @@ class TuringMachine extends Component {
         })
     }
 
-    setTapePosition(position) {
-        this.setState({ currentTapePosition: position })
-    }
-
     render() {
         return (
             <div>
+                <ExampleLoader
+                    loadExample={this.loadProgram} />
                 <div style={{
                     display: 'flex',
                     justifyContent: 'center',

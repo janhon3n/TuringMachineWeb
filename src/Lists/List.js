@@ -20,7 +20,7 @@ class List extends Component {
         }}>
 
         {(this.props.title !== undefined &&
-          <h3 style={{ color: 'white' }}>{this.props.title}</h3>
+          <h3 style={{ color: 'white', paddingLeft:'5px' }}>{this.props.title}</h3>
         )}
         {(this.props.header !== undefined &&
           <ListRow header minWidth={this.props.minWidth}>
