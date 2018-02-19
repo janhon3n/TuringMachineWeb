@@ -1,1 +1,1 @@
-Demo running on [turingmachine.janho.fi](https://turingmachine.janho.fi)
+Demo running on [turingmachine.janho.fi](http://turingmachine.janho.fi)
